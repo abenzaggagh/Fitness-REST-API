@@ -1,7 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import routes from './src/routes/userRoutes';
+import userRoutes from './src/routers/userRoutes';
+// import habitRoutes from './src/routers/habitRoutes';
 
 // Server PORT
 const PORT = 4000
@@ -19,8 +20,11 @@ mongoose.connect('mongodb://localhost/fitness', {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(express.static('public'));
+
 // API Routes
-routes(app);
+userRoutes(app);
+// habitRoutes(app);
 
 app.get('/', (req, res) => {
     res.send(`Fitness API - Node & Express Server on ${PORT}`)

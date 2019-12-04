@@ -48,3 +48,19 @@ export const deleteUser = (request, response) => {
         response.json({message: 'Successfully user deleted.'})
     });
 }
+
+export const loginUser = (request, response) => {
+    // Most Important Part: Generate User's Token(s)
+}
+
+export const profileUser = (request, response) => {
+    // Same as GetUserByID but this one...
+}
+
+export const logoutUser = (request, response) => {
+    // Same as GetUserByID but this one...
+}
+
+export const logoutAllUser = (request, response) => {
+    // Same as GetUserByID but this one...
+}
