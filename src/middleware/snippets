@@ -1,0 +1,12 @@
+/*
+
+.get((request, response, next) => {
+    // Middleware
+    console.log(`Request from:   ${request.originalUrl}`)
+    console.log(`Request method: ${request.method}`)
+    next();
+}, (request, response, next) => {
+    response.send('GET Method')
+})
+
+*/
