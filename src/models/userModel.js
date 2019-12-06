@@ -1,6 +1,4 @@
 import moongose from 'mongoose';
-import { bcrypt } from 'bcryptjs';
-import { jwt } from 'jsonwebtoken';
 
 const Schema = moongose.Schema;
 
@@ -35,11 +33,12 @@ export const UserSchema = new Schema({
         type: String,
         unique: true,
         lowercase: true,
-        validate: value => {
+/*        validate: value => {
             if (!validator.isEmail(value)) {
                 throw new Error({error: 'Invalid Email'})
             }
-        },
+        }, 
+*/
         required: 'Email required'
     },
     password: {
@@ -50,7 +49,7 @@ export const UserSchema = new Schema({
     tokens: [{
         token: {
             type: String,
-            required: true
+            // required: true
         }
     }],
     phone: {
