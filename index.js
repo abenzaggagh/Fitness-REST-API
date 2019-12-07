@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import MongoClient from 'mongoose';
+import mongoose from 'mongoose';
 
 import userRoutes from './src/routers/userRoutes';
 // import habitRoutes from './src/routers/habitRoutes';
@@ -14,12 +14,19 @@ dotenv.config()
 // Express Application
 const app = express();
 
+// TODO: Change the mongoose to the MongoDB driver or at least reference more about the diff...
 // MongoDB Connection
 // mongoose.Promise = global.Promise
-let mongoClient = null;
-MongoClient.connect(process.env.URL, { useNewUrlParser: true, useUnifiedTopology: true  }, function (err, client) {
-    mongoClient = client;
-});
+// let mongoClient = null;
+// MongoDB instance not working I guess, I will replace it with the old way.
+// MongoClient.connect(process.env.URL, { useNewUrlParser: true, }, function (err, client) {
+
+//     if(err) throw err;
+
+//     mongoClient = client;
+// });
+
+mongoose.connect(process.env.URL, { useNewUrlParser: true });
 
 // BodyParser Setup
 app.use(bodyParser.urlencoded({ extended: true }));
