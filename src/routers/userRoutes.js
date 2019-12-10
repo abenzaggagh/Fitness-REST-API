@@ -14,17 +14,17 @@ const userRoutes = (app) => {
     .put(updateUser)            // HTTP PUT     /users/userID   Update user informations 
     .delete(deleteUser);        // HTTP DELETE  /users/userID   Remove user
 
-    app.route('/users/login')
-    .get(loginUser);            // HTTP POST    /users/login    Allow user to login
+    app.route('/users/auth/login')
+    .post(loginUser);            // HTTP POST    /users/login    Allow user to login
 
-    app.route('/users/me')
+    app.route('/users/auth/me')
     .get(profileUser);          // HTTP GET     /users/me       Retrieve current user informations
 
-    app.route('/users/logout')
+    app.route('/users/auth/logout')
     .post(logoutUser);          // HTTP POST    /users/logout   Logout the user
     
     
-    app.route('/users/logoutall')
+    app.route('/users/auth/logoutall')
     .post(logoutAllUser);       // HTTP POST /users/logoutall   Logout the user from all the devices.
 
 }

@@ -1,4 +1,5 @@
 import moongose from 'mongoose';
+import bcrypt from 'bcrypt';
 
 const Schema = moongose.Schema;
 
@@ -33,12 +34,6 @@ export const UserSchema = new Schema({
         type: String,
         unique: true,
         lowercase: true,
-/*        validate: value => {
-            if (!validator.isEmail(value)) {
-                throw new Error({error: 'Invalid Email'})
-            }
-        }, 
-*/
         required: 'Email required'
     },
     password: {
@@ -46,12 +41,10 @@ export const UserSchema = new Schema({
         type: String,        
         required: 'Password required' 
     },
-    tokens: [{
-        token: {
-            type: String,
-            // required: true
-        }
-    }],
+    token: {
+        type: String,
+        required: true
+    },
     phone: {
         type: Number
     },
@@ -66,3 +59,7 @@ export const UserSchema = new Schema({
         type: Date
     }
 });
+
+UserSchema.methods.comparePassword = function (password) {
+    return bcrypt.compareSync(password, this.password)
+}
