@@ -80,9 +80,11 @@ export const loginUser = (request, response) => {
             if (!user.comparePassword(request.body.password)) {
                 response.status(401).json({ message: 'Authentication failed. Wrong password.' });
             } else {
-                let userToken = jwt.sign({ email: user.email, _id: user._id}, 'FITNESS_REST_API')
-                // $set: { tok: request.params.password } 
-                return response.json({token: user.token});
+                let userToken = jwt.sign({ email: user.email, _id: user._id}, 'FITNESS_REST_API');
+                User.updateOne({'email': request.params.email }, {
+                    $set: { token: userToken } 
+                })
+                return response.json({token: userToken});
             }
         }
     });
