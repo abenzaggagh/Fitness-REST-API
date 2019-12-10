@@ -1,8 +1,13 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import bodyParser from 'body-parser';
+// import dotenv from 'dotenv';
+// import express from 'express';
+// import mongoose from 'mongoose';
+// import bodyParser from 'body-parser';
 
-import mongoose from 'mongoose';
+const dotenv = require('dotenv');
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
 
 import userRoutes from './src/routers/userRoutes';
 // import habitRoutes from './src/routers/habitRoutes';

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "nodemon ./index.js"
+    "start": "nodemon ./index.js --exec babel-node -e js"
   },
   "engines": {
     "node": "^10.0.0",
