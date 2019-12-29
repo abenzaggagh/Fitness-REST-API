@@ -3,35 +3,26 @@
 // import mongoose from 'mongoose';
 // import bodyParser from 'body-parser';
 
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+// require('dotenv').config()
+// Express Application
+const app = express();
+
+// Environment Variables
+// dotenv.config()
+
+import { port, url } from './src/configuration';
 
 import userRoutes from './src/routers/userRoutes';
 // import habitRoutes from './src/routers/habitRoutes';
 
-
-// Environment Variables
-dotenv.config()
-
-// Express Application
-const app = express();
-
-// TODO: Change the mongoose to the MongoDB driver or at least reference more about the diff...
-// MongoDB Connection
-// mongoose.Promise = global.Promise
-// let mongoClient = null;
-// MongoDB instance not working I guess, I will replace it with the old way.
-// MongoClient.connect(process.env.URL, { useNewUrlParser: true, }, function (err, client) {
-
-//     if(err) throw err;
-
-//     mongoClient = client;
-// });
-
-mongoose.connect(process.env.URL, { useNewUrlParser: true });
+mongoose.connect(url, 
+    { useNewUrlParser: true, useCreateIndex: true }
+);
 
 // BodyParser Setup
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,9 +35,9 @@ userRoutes(app);
 // habitRoutes(app);
 
 app.get('/', (req, res) => {
-    res.send(`Fitness API - Node & Express Server on ${process.env.PORT}`)
+    res.send(`Fitness API - Node & Express Server on ${port}`)
 });
 
 app.listen(process.env.PORT, () => {
-    console.log(`Server running on ${process.env.PORT}`)
+    console.log(`Server running on ${port} `)
 });
