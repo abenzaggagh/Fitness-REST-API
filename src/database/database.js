@@ -1,7 +1,3 @@
-import { connect } from 'mongoose';
+import { mongoose } from 'mongoose';
 
-
-// connect(process.env.MONGODB_URL, {
-//     useNewUrlParser: true,
-//     useCreateIndex: true,
-// })
+// mongoose.connect(process.env.URL, { useNewUrlParser: true, useCreateIndex: true });

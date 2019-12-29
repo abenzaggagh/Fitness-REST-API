@@ -1,6 +1,6 @@
 import { 
     addNewUser, getUsers, getUser, updateUser, deleteUser, // CRUD Methods on User Entity
-    loginUser, logoutUser, logoutAllUser, profileUser
+    loginUser, logoutUser, logoutAllUser, profileUser, signUser, verifyExistingUser
 } from "../controllers/userController";
 
 const userRoutes = (app) => {
@@ -9,13 +9,20 @@ const userRoutes = (app) => {
     .get(getUsers)              // HTTP GET      /users         Get all users
     .post(addNewUser);          // HTTP POST     /users         Register a new user
 
+    // Routes that must be protected...
     app.route('/api/users/:userID')
     .get(getUser)               // HTTP GET     /users/userID   Retrieve user by userID  
     .put(updateUser)            // HTTP PUT     /users/userID   Update user informations 
     .delete(deleteUser);        // HTTP DELETE  /users/userID   Remove user
 
+    app.route('/api/users/auth/verify')
+    .post(verifyExistingUser)  // HTTP POST    /users/login    Allow user to login
+
     app.route('/api/users/auth/login')
     .post(loginUser);            // HTTP POST    /users/login    Allow user to login
+
+    app.route('/api/users/auth/sign-up')
+    .post(signUser);
 
     app.route('/api/users/auth/me')
     .get(profileUser);          // HTTP GET     /users/me       Retrieve current user informations
