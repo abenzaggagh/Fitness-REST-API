@@ -94,12 +94,11 @@ export const loginUser = (request, response) => {
                     { message: 'Authentication failed. Wrong password.' }
                 );
             } else {
-                let userToken = UserSchema.generateToken()
+                const token = jwt.sign({ email: user.email, _id: user._id }, jwtKey)
                 User.updateOne({'email': request.params.email }, {
-                    $set: { token: userToken } 
-                    // TODO: Append the token to tokens array in DB
+                    $set: { token: token }
                 })
-                return response.json({ token: userToken });
+                return response.status(201).json({ token: token })
             }
         }
     });
@@ -109,7 +108,15 @@ export const loginUser = (request, response) => {
 // TODO: HTTP Method that return a Bool depending on the exsitence of the email address of an user
 export const verifyExistingUser = (request, response) => {
     User.find({ email: request.body.email }, function(error, user) {
-        response.status(201).json(user);
+        if (error) {
+            response.status(500).json({ message: ' Internal Server Error'} )
+            throw error
+        }
+        if (Object.keys(user).length === 0) {
+            response.status(400).json({ message: 'False'} );
+        } else {
+            response.status(201).json({ message: 'True'} );
+        }
     });
 }
 
