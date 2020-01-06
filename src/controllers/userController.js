@@ -145,14 +145,14 @@ export const signUser = (request, response) => {
                 response.status(400).send(error)
             } else {
                 const token = jwt.sign({ email: user.email, _id: user._id }, jwtKey)
+                User.updateOne({'email': user.email }, {
+                    $set: { token: token }
+                })
                 return response.status(201).json({ token: token })
             }
         })
 
     });
-
-            
-
 
 }
 

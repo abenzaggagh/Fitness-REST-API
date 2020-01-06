@@ -11,18 +11,18 @@ const userRoutes = (app) => {
 
     // Routes that must be protected...
     app.route('/api/users/:userID')
-    .get(getUser)               // HTTP GET     /users/userID   Retrieve user by userID  
-    .put(updateUser)            // HTTP PUT     /users/userID   Update user informations 
-    .delete(deleteUser);        // HTTP DELETE  /users/userID   Remove user
+    .get(getUser)                // HTTP GET     /users/userID   Retrieve user by userID  
+    .put(updateUser)             // HTTP PUT     /users/userID   Update user informations 
+    .delete(deleteUser);         // HTTP DELETE  /users/userID   Remove user
 
     app.route('/api/users/auth/verify')
-    .post(verifyExistingUser)  // HTTP POST    /users/login    Allow user to login
+    .post(verifyExistingUser)    // HTTP POST    /users/login    Allow user to login
 
     app.route('/api/users/auth/login')
     .post(loginUser);            // HTTP POST    /users/login    Allow user to login
 
     app.route('/api/users/auth/sign-up')
-    .post(signUser);
+    .post(signUser);            // HTTP POST    /users/sign-up   Allow user to register
 
     app.route('/api/users/auth/me')
     .get(profileUser);          // HTTP GET     /users/me       Retrieve current user informations
