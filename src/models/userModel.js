@@ -26,10 +26,10 @@ export const UserSchema = new Schema({
         required: 'Birthday required'
     },
     height: {
-        type: Number,
+        type: Number
     },
     weight: {
-        type: Number,
+        type: Number
     },
     address: {
         type: String,
@@ -79,10 +79,3 @@ UserSchema.methods.generateToken = async function() {
     return token
 }
 
-// UserSchema.pre('save', async function (next) {
-//     const user = this
-//     if (user.isModified('password')) {
-//         user.password = await bcrypt.hash(user.password, 8)
-//     }
-//     next()
-// })
